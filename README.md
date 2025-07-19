@@ -1,47 +1,66 @@
-Here's a clean and professional `README.md` file you can use for your GitHub repository. It explains what the project is, how to use it, and how the Streamlit app works.
+
+# 🪙 Gold Price Forecasting Using Time Series Analysis (ARIMA & SARIMA)
+
+This project performs in-depth **time series analysis** and **forecasting** on monthly gold prices using **ARIMA** and **SARIMA** models. It also features a full-fledged **Streamlit app** for interactive exploration, model selection, and dynamic forecasting.
 
 ---
 
-## ✅ `README.md` for Your Time Series Gold Forecasting Project
+## 📦 Project Features
 
-````markdown
-# 📈 Gold Price Forecasting Using Time Series (ARIMA & SARIMA)
+### ✅ Time Series Workflow Includes:
+- Downloading gold price data from **Yahoo Finance**
+- **Visualization** of trends over time
+- **STL decomposition** to separate trend, seasonality, and noise
+- **ADF test** for stationarity
+- **Differencing** to make the series stationary
+- **ACF and PACF plots** to determine model orders
+- **Model building** with ARIMA and SARIMA
+- **Forecasting** next 12 months
+- **Model comparison** using AIC/BIC
+- **Model saving** using pickle
 
-This project performs a time series analysis and forecasting on monthly gold price data using **ARIMA** and **SARIMA** models. It also includes a fully interactive **Streamlit web application** to visualize forecasts.
+### ✅ Interactive Streamlit Web App:
+- Choose between ARIMA and SARIMA models
+- Forecast up to 36 months into the future
+- Visualize forecast with **confidence intervals**
+- View model summary and raw historical data
 
 ---
 
-## 📊 Project Overview
+## 🗃️ Repository Structure
 
-- **Data Source**: Gold futures data from Yahoo Finance (`GC=F`)
-- **Time Frame**: January 2005 – July 2025
-- **Models Used**:
-  - ARIMA: Non-seasonal model
-  - SARIMA: Seasonal ARIMA model
-- **Decomposition**: STL (Seasonal-Trend decomposition using Loess)
-- **Forecast Horizon**: User-selectable (1–36 months)
-- **Visualization**: Matplotlib + Streamlit
+```
+
+📁 gold-price-forecasting/
+├── app.py                   # Streamlit app
+├── arima\_gold\_model.pkl     # Trained ARIMA model (auto-generated)
+├── sarima\_gold\_model.pkl    # Trained SARIMA model (auto-generated)
+├── model\_training.ipynb     # Main analysis & modeling notebook (optional)
+├── requirements.txt         # Required packages
+└── README.md                # Project overview
+
+````
 
 ---
 
-## 🔧 Setup Instructions
+## 🚀 Getting Started
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/time_series_gold_forecasting.git
-cd time_series_gold_forecasting
+git clone https://github.com/your-username/gold-price-forecasting.git
+cd gold-price-forecasting
 ````
 
-### 2. Install Required Packages
+### 2. Install Dependencies
 
-Use pip or create a virtual environment:
+Install required libraries using pip:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run the Streamlit App Locally
+### 3. Run the Streamlit App
 
 ```bash
 streamlit run app.py
@@ -49,84 +68,85 @@ streamlit run app.py
 
 ---
 
-## 📁 File Structure
+## 📈 Example Forecast Visualization
 
-| File / Folder           | Description                                 |
-| ----------------------- | ------------------------------------------- |
-| `app.py`                | Streamlit app for interactive forecasting   |
-| `arima_gold_model.pkl`  | Pretrained ARIMA model (saved using pickle) |
-| `sarima_gold_model.pkl` | Pretrained SARIMA model                     |
-| `requirements.txt`      | List of dependencies                        |
-| `README.md`             | Project overview and setup                  |
+*Forecast using SARIMA model (green) and 95% confidence interval:*
+
+![Forecast Example](./sample_forecast.png)
 
 ---
 
-## 🖥️ Features of the Streamlit App
+## 🧠 Model Details
 
-* 📌 Choose between ARIMA or SARIMA model
-* 📅 Select forecast period (1 to 36 months)
-* 📉 Plot includes:
+| Model  | AIC / BIC | Seasonality | Stationarity | Forecast Horizon |
+| ------ | --------- | ----------- | ------------ | ---------------- |
+| ARIMA  | Evaluated | ❌ No        | Differenced  | Short-term       |
+| SARIMA | Evaluated | ✅ Yes       | Differenced  | Seasonal-aware   |
 
-  * Historical prices
-  * Predicted prices
-  * 95% Confidence interval
-* 📤 Load latest gold data directly from Yahoo Finance
-* 📄 Model summary (AIC/BIC metrics)
-* 📁 Download-ready `.pkl` model files
+### 🔬 ACF & PACF Interpretation Tips:
 
----
-
-## 📦 Requirements
-
-* `streamlit`
-* `pandas`
-* `matplotlib`
-* `statsmodels`
-* `yfinance`
-* `pickle` (standard library)
+* ACF with spikes at seasonal lags → Add seasonal terms
+* PACF cut-off after lag `p` → Suggests AR model order
+* ACF cut-off after lag `q` → Suggests MA model order
 
 ---
 
-## 🧠 Time Series Steps Implemented
+## 🧪 ADF Test Result Sample Output
 
-1. Load monthly gold prices from Yahoo Finance
-2. Visualize the time series
-3. STL decomposition into trend/seasonal/residual
-4. Perform ADF test for stationarity
-5. Apply differencing if needed
-6. Fit ARIMA and SARIMA models
-7. Forecast future prices
-8. Compare models using AIC/BIC
-9. Save the best model as `.pkl`
+```
+ADF Statistic: -1.56
+p-value: 0.51
+Conclusion: Time series is **non-stationary**. Differencing is required.
+```
 
 ---
 
-## 📈 Sample Forecast Plot
+## 🧰 Technologies Used
 
-*SARIMA model forecasting 12 months ahead (with 95% confidence interval):*
-
-![Gold Forecast](./sample_forecast.png) <!-- You can add this image if you upload a screenshot -->
-
----
-
-## 📌 Author
-
-Made with ❤️ by [Your Name](https://github.com/your-username)
+* `Python`
+* `Pandas`, `Matplotlib`, `Statsmodels`
+* `yfinance` for data fetching
+* `Streamlit` for UI
+* `Pickle` for model persistence
 
 ---
 
-## 📃 License
+## 📄 License
 
-This project is open-source under the [MIT License](LICENSE).
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+## 👤 Author
+
+Developed by **\[Your Name]**
+📧 [your.email@example.com](mailto:your.email@example.com)
+🌐 [github.com/your-username](https://github.com/your-username)
+
+---
+
+## 🔗 Related Projects
+
+* Time Series Forecasting with Prophet
+* Stock Price Prediction using LSTM
 
 ```
 
 ---
 
-Would you like me to:
-- Generate a `requirements.txt` file compatible with Streamlit Cloud?
-- Package this as a GitHub repo for you (if you're planning to upload)?
-- Add instructions for Docker or Hugging Face deployment?
+## 📌 `requirements.txt`
 
-Let me know how else I can support you!
+If you want to deploy or share the project, use this for your `requirements.txt`:
+
 ```
+
+streamlit
+pandas
+matplotlib
+statsmodels
+yfinance
+python-dateutil
+
+```
+
+
